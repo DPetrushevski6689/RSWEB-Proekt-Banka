@@ -1,0 +1,75 @@
+﻿@model Banka.FilterViewModels.VraboteniFilter
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+    <h2>Вработени</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<form asp-controller="Employees" asp-action="Index" method="get">
+    <p>
+        Име: <input type="text" asp-for="searchFirstName" />
+        Презиме: <input type="text" asp-for="searchLastName" />
+        <select asp-for="searchPosition" asp-items="Model.Pozicii">
+            <option value="">All</option>
+        </select>
+        <input type="submit" value="Филтер" />
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Vraboteni[0].firstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vraboteni[0].lastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vraboteni[0].birthDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vraboteni[0].Position)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vraboteni[0].KompaniskiSmetki)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Vraboteni) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.firstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.lastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.birthDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Position)
+            </td>
+            <td>
+                @foreach(var smetka in item.KompaniskiSmetki)
+                {
+                    <a asp-controller="KompaniskiSmetki" asp-action="Edit" asp-route-id="@smetka.Id">@smetka.kompaniskaSmetka.bankarskiBroj</a><br />
+                }
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-controller="Admin" asp-action="VrabotenProfile" asp-route-id="@item.Id">Профил</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

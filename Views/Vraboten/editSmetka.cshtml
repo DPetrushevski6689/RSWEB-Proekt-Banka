@@ -1,0 +1,42 @@
+﻿@model Banka.FunctionalityViewModels.EditSmetkaViewModel
+
+@{
+    ViewData["Title"] = "editSmetka";
+}
+
+<h2>Промени тип на сметка</h2>
+<hr />
+
+<h5><b>@Html.DisplayNameFor(model => model.Zapis.kompaniskaSmetka.bankarskiBroj)</b>: @Html.DisplayFor(model => model.Zapis.kompaniskaSmetka.bankarskiBroj)</h5>
+<h5><b>@Html.DisplayNameFor(model => model.Zapis.kompaniskaSmetka.paricnaSostojba)</b>: @Html.DisplayFor(model => model.Zapis.kompaniskaSmetka.paricnaSostojba)</h5>
+<h5><b>@Html.DisplayNameFor(model => model.Zapis.kompaniskaSmetka.dataIzdavanje)</b>: @Html.DisplayFor(model => model.Zapis.kompaniskaSmetka.dataIzdavanje)</h5>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="editSmetka" asp-route-id="@Model.Zapis.Id">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Zapis.Id" />
+            <div class="form-group">
+                <label asp-for="Zapis.tip" class="control-label"></label>
+                <input asp-for="Zapis.tip" class="form-control" />
+                <span asp-validation-for="Zapis.tip" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Зачувај" class="btn btn-default" />
+            </div>
+            <div>
+                <a asp-action="Index" asp-route-id="@Model.Zapis.kompaniskaSmetkaId">Назад кон сметките</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+

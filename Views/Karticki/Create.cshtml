@@ -1,0 +1,49 @@
+﻿@model Banka.Models.Karticka
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>Karticka</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="brojNaKarticka" class="control-label"></label>
+                <input asp-for="brojNaKarticka" class="form-control" />
+                <span asp-validation-for="brojNaKarticka" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="tipNaKarticka" class="control-label"></label>
+                <input asp-for="tipNaKarticka" class="form-control" />
+                <span asp-validation-for="tipNaKarticka" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="paricnaSostojba" class="control-label"></label>
+                <input asp-for="paricnaSostojba" class="form-control" />
+                <span asp-validation-for="paricnaSostojba" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="korisnickaSmetkaId" class="control-label">Корисничка сметка</label>
+                <select asp-for="korisnickaSmetkaId" class="form-control" asp-items="ViewBag.korisnickaSmetkaId">
+                    <option value=" ">Select</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

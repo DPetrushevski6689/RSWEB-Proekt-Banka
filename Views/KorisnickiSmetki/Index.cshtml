@@ -1,0 +1,79 @@
+﻿@model Banka.FilterViewModels.KorisnickiSmetkiFilter
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Кориснички сметки</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<form asp-controller="KorisnickiSmetki" asp-action="Index" method="get">
+    <p>
+        Банкарски број: <input type="text" asp-for="searchBankarskiBroj"/>
+        <select asp-for="tipSmetka" asp-items="Model.tipoviSmetka">
+            <option value="">All</option>
+        </select>
+        <input type="submit" value="Филтер"/>
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.KorisnickiSmetki[0].bankarskiBroj)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KorisnickiSmetki[0].paricnaSostojba)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KorisnickiSmetki[0].dataIzdavanje)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KorisnickiSmetki[0].tip)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KorisnickiSmetki[0].Korisnik)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KorisnickiSmetki[0].Karticki)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.KorisnickiSmetki) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.bankarskiBroj)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.paricnaSostojba)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dataIzdavanje)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tip)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Korisnik.FullName)
+            </td>
+            <td>
+                @foreach(var karticka in item.Karticki)
+                {
+                    <a asp-controller="Karticki" asp-action="Details" asp-route-id="@karticka.Id">@karticka.brojNaKarticka</a>
+                }
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

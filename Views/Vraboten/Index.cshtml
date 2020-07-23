@@ -1,0 +1,55 @@
+﻿
+@model Banka.Models.Employee
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Листа на компаниски сметки</h2>
+<h3>@Model.FullName</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.KompaniskiSmetki.FirstOrDefault().kompaniskaSmetka.bankarskiBroj)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KompaniskiSmetki.FirstOrDefault().kompaniskaSmetka.paricnaSostojba)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KompaniskiSmetki.FirstOrDefault().kompaniskaSmetka.dataIzdavanje)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KompaniskiSmetki.FirstOrDefault().tip)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.KompaniskiSmetki)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.kompaniskaSmetka.bankarskiBroj)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.kompaniskaSmetka.paricnaSostojba)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.kompaniskaSmetka.dataIzdavanje)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tip)
+            </td>
+            <td>
+                <a asp-action="editSmetka" asp-route-id="@item.Id">Промени активност на сметка</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+
+
+

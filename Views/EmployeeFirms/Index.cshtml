@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Banka.Models.EmployeeFirms>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Координатори на сметки</h2>
+
+<p>
+    <a asp-action="AddVrabotenSmetki">Препиши сметки на координатор</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.vrabotenKoordinator)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.kompaniskaSmetka)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tip)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.vrabotenKoordinator.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.kompaniskaSmetka.bankarskiBroj)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tip)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

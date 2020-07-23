@@ -1,0 +1,39 @@
+﻿@model Banka.Models.FirmiSopstvenici
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>Фирма и сопственик</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="sopstvenikId" class="control-label">Сопственик</label>
+                <select asp-for="sopstvenikId" class="form-control" asp-items="ViewBag.sopstvenikId"></select>
+                <span asp-validation-for="sopstvenikId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="firmaId" class="control-label">Фирма</label>
+                <select asp-for="firmaId" class="form-control" asp-items="ViewBag.firmaId"></select>
+                <span asp-validation-for="firmaId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,34 @@
+﻿@model Banka.FunctionalityViewModels.OwnerFirmsViewModel
+
+@{
+    ViewData["Title"] = "AddOwnerFirms";
+}
+
+<h2>Препиши фирми на сопственик</h2>
+<hr />
+
+<form asp-action="AddOwnerFirms">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    @Html.DisplayNameFor(model => model.sopstvenikId): <select asp-for="sopstvenikId" asp-items="Model.Sopstvenici">
+        <option value="">Select</option>
+    </select>
+    <hr />
+    <div class="row">
+        <div class="col-md-8">
+            <div class="form-group">
+                <label asp-for="firmaIds" class="control-label"></label>
+                <select asp-for="firmaIds" class="form-control js-example-basic-multiple" asp-items="Model.Firmi">
+                  
+                </select>
+            </div>
+        </div>
+        <div class="form-group col-md-12">
+            <hr />
+            <input type="submit" value="Препиши фирми" class="btn btn-default"/>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Назад кон главна страна</a>
+</div>

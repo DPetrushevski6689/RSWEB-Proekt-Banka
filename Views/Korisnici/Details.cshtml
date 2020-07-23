@@ -1,0 +1,60 @@
+﻿@model Banka.Models.Korisnik
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Korisnik</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.firstName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.firstName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.lastName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.lastName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.birthDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.birthDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.KorisnickiSmetki)
+        </dt>
+        <dd>
+            @foreach (var smetka in Model.KorisnickiSmetki)
+            {
+                <a asp-controller="KorisnickiSmetki" asp-action="Details" asp-route-id="@smetka.Id">@smetka.bankarskiBroj</a><br />
+            }
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Firmi)
+        </dt>
+        <dd>
+            @foreach (var firma in Model.Firmi)
+            {
+                <a asp-controller="Firmi" asp-action="Details" asp-route-id="@firma.Id">@firma.Firma.firmName</a><br />
+            }
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -1,0 +1,34 @@
+﻿@model Banka.FunctionalityViewModels.KorisnikSmetkiViewModel
+
+@{
+    ViewData["Title"] = "dodadiSredstva";
+}
+
+<h2>Додади средства</h2>
+<h3>@Model.Smetka.bankarskiBroj</h3>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="dodadiSredstva" asp-route-id="@Model.Smetka.Id">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Smetka.Id" />
+            <div class="form-group">
+                <label asp-for="Smetka.paricnaSostojba" class="control-label">Моментална парична состојба: @Model.Smetka.paricnaSostojba</label> <br />
+                Нова парична состојба:<input asp-for="Smetka.paricnaSostojba" class="form-control" value=""/>
+                <span asp-validation-for="Smetka.paricnaSostojba" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Зачувај" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+

@@ -1,0 +1,53 @@
+﻿@model Banka.Models.Korisnik
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Листа на кориснички сметки</h2>
+<h3>@Model.FullName</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.KorisnickiSmetki.FirstOrDefault().bankarskiBroj)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KorisnickiSmetki.FirstOrDefault().paricnaSostojba)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KorisnickiSmetki.FirstOrDefault().tip)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KorisnickiSmetki.FirstOrDefault().dataIzdavanje)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.KorisnickiSmetki)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.bankarskiBroj)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.paricnaSostojba)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tip)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dataIzdavanje)
+            </td>
+            <td>
+                <a asp-action="dodadiSredstva" asp-route-id="@item.Id">Додади парични средства</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+
+

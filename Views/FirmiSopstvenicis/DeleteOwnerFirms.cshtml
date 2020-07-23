@@ -1,0 +1,36 @@
+﻿@model Banka.FunctionalityViewModels.OwnerDeleteFirmsViewModel
+
+@{
+    ViewData["Title"] = "DeleteOwnerFirms";
+}
+
+<h2>Отпиши фирми на сопственик</h2>
+<hr />
+
+<form asp-action="DeleteOwnerFirms">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    @Html.DisplayNameFor(model => model.sopstvenikId): <select asp-for="sopstvenikId" asp-items="Model.Sopstvenici">
+        <option value="">Select</option>
+    </select>
+    <hr />
+    <div class="row">
+        <div class="col-md-8">
+            <div class="form-group">
+                <label asp-for="firmiIds" class="control-label"></label>
+                <select asp-for="firmiIds" class="form-control js-example-basic-multiple" asp-items="Model.Firmi">
+                </select>
+            </div>
+        </div>
+        <div class="form-group col-md-12">
+            <hr />
+            <input type="submit" value="Отпиши фирми" class="btn btn-default" />
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Назад кон главна страна</a>
+</div>
+
+
+

@@ -1,0 +1,64 @@
+﻿@model Banka.FilterViewModels.KartickiFilter
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Издадени Картички</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<form asp-controller="Karticki" asp-action="Index" method="get">
+    <p>
+        Број на картичка: <input type="text" asp-for="searchBrojKarticka"/>
+        <select asp-for="searchTipKarticka" asp-items="Model.tipoviKarticki">
+            <option value="">All</option>
+        </select>
+        <input type="submit" value="Филтер"/>
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Karticki[0].brojNaKarticka)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Karticki[0].tipNaKarticka)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Karticki[0].paricnaSostojba)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Karticki[0].korisnickSmetka)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Karticki) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.brojNaKarticka)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tipNaKarticka)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.paricnaSostojba)
+            </td>
+            <td>
+                <a asp-controller="KorisnickiSmetki" asp-action="Details" asp-route-id="@item.korisnickaSmetkaId">@Html.DisplayFor(modelItem => item.korisnickSmetka.bankarskiBroj)</a>
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
